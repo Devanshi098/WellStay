@@ -23,14 +23,14 @@ function AirbnbSearch() {
   const [adults, setadults] = useState('');
   const [children, setchildren] = useState('');
 
-  const handleExpandClick = (id) => {
-    setListings(prevListings => prevListings.map(listing => {
-      if (listing.id === id) {
-        return { ...listing, expanded: !listing.expanded };
-      }
-      return listing;
-    }));
-  };
+  // const handleExpandClick = (id) => {
+  //   setListings(prevListings => prevListings.map(listing => {
+  //     if (listing.id === id) {
+  //       return { ...listing, expanded: !listing.expanded };
+  //     }
+  //     return listing;
+  //   }));
+  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -39,7 +39,7 @@ function AirbnbSearch() {
       const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': '6d8e5bba7emshd1578a3937d5b4ap101ddejsn8d1743b672c9',
+          'X-RapidAPI-Key': '6112e6c475msh958a4061a13853dp1b5feejsnd2188ccd77d6',
           'X-RapidAPI-Host': 'airbnb13.p.rapidapi.com'
         }
       };
@@ -109,7 +109,8 @@ function AirbnbSearch() {
               </CardContent>
               <Typography variant="body2" color="text.secondary"> RATING: {listing.rating} OUT OF {listing.reviewsCount}</Typography>
               <Typography variant="body2" color="text.secondary"> INR {listing.price["rate"]} per night.</Typography>
-              <Typography variant="body2" color="text.secondary">  {listing.bedrooms} </Typography>
+              <Typography variant="body2" color="text.secondary"> BEDROOMS: {listing.bedrooms} </Typography>
+              <Typography variant="body2" color="text.secondary"> LOCATION: {listing.address} </Typography>
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                   <FavoriteIcon />
