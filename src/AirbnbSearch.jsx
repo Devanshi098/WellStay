@@ -20,6 +20,8 @@ function AirbnbSearch() {
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
   const [listings, setListings] = useState([]);
+  const [adults, setadults] = useState('');
+  const [children, setchildren] = useState('');
 
   const handleExpandClick = (id) => {
     setListings(prevListings => prevListings.map(listing => {
@@ -33,7 +35,7 @@ function AirbnbSearch() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const url = `https://airbnb13.p.rapidapi.com/search-location?location=${location}&checkin=${checkInDate}&checkout=${checkOutDate}&adults=1&children=0&infants=0&pets=0&page=1&currency=USD`;
+      const url = `https://airbnb13.p.rapidapi.com/search-location?location=${location}&checkin=${checkInDate}&checkout=${checkOutDate}&adults=${adults}&children=${children}&infants=0&pets=0&page=1&currency=INR`;
       const options = {
         method: 'GET',
         headers: {
@@ -70,6 +72,8 @@ function AirbnbSearch() {
         <input type="date" value={checkInDate} onChange={(e) => setCheckInDate(e.target.value)} />
         {/* Check-out Date */}
         <input type="date" value={checkOutDate} onChange={(e) => setCheckOutDate(e.target.value)} />
+        <input placeholder="Adults" type="text" value={adults} onChange={(e) => setadults(e.target.value)} />
+        <input placeholder="Children" type="text" value={children} onChange={(e) => setchildren(e.target.value)} />
         <button type="submit">Search</button>
       </form>
       <br/>
@@ -103,6 +107,9 @@ function AirbnbSearch() {
                   {listing.description}
                 </Typography>
               </CardContent>
+              <Typography variant="body2" color="text.secondary"> RATING: {listing.rating} OUT OF {listing.reviewsCount}</Typography>
+              <Typography variant="body2" color="text.secondary"> INR {listing.price["rate"]} per night.</Typography>
+              <Typography variant="body2" color="text.secondary">  {listing.bedrooms} </Typography>
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                   <FavoriteIcon />
