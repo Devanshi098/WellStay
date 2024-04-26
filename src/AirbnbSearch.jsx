@@ -15,6 +15,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+
 function AirbnbSearch() {
   const [location, setLocation] = useState('');
   const [checkInDate, setCheckInDate] = useState('');
@@ -63,19 +64,20 @@ function AirbnbSearch() {
 
   return (
     <div className="airbnb-search">
-      <form onSubmit={handleSubmit}>
-        {/* Your form input fields */}
-        {/* Example: */}
-        {/* Location */}
-        <input placeholder="Location" type="text" value={location} onChange={(e) => setLocation(e.target.value)} />    
-        {/* Check-in Date */}
-        <input type="date" value={checkInDate} onChange={(e) => setCheckInDate(e.target.value)} />
-        {/* Check-out Date */}
-        <input type="date" value={checkOutDate} onChange={(e) => setCheckOutDate(e.target.value)} />
-        <input placeholder="Adults" type="text" value={adults} onChange={(e) => setadults(e.target.value)} />
-        <input placeholder="Children" type="text" value={children} onChange={(e) => setchildren(e.target.value)} />
-        <button type="submit">Search</button>
-      </form>
+      <form className="search-form mt-6 flex-row " onSubmit={handleSubmit}>
+  {/* Your form input fields */}
+  {/* Example: */}
+  {/* Location */}
+  <input className="w-40 bg-[#ff5a60] border border-black border-3 rounded-md px-3 py-2 mr-10 text-black placeholder-black text-center rounded"placeholder="Location" type="text" value={location} onChange={(e) => setLocation(e.target.value)} />    
+  {/* Check-in Date */}
+  <input className="mt-2 w-40 bg-[#ff5a60] border border-black rounded-md px-3 py-2 mr-10 text-black placeholder-black text-center" type="date" value={checkInDate} onChange={(e) => setCheckInDate(e.target.value)} />
+  {/* Check-out Date */}
+  <input className="mt-2 bg-[#ff5a60] w-40 border  border-black border-3  rounded-md px-3 py-2 mr-10 text-black placeholder-black text-center" type="date" value={checkOutDate} onChange={(e) => setCheckOutDate(e.target.value)} />
+  <input className="mt-2 bg-[#ff5a60] w-40 border  border-black border-3 rounded-md px-3 py-2 mr-10 text-gray-700 placeholder-black text-center" placeholder="Adults" type="text" value={adults} onChange={(e) => setadults(e.target.value)} />
+  <input className="mt-2 bg-[#ff5a60] w-40 border  border-black border-3  rounded-md px-3 py-2 mr-10 text-gray-700 placeholder-black text-center" placeholder="Children" type="text" value={children} onChange={(e) => setchildren(e.target.value)} />
+  <button className="mt-2 bg-[#ff5a60] w-40 border border-black border-3  text-black  py-2 px-4 rounded" type="submit text-center">Search</button>
+</form>
+
       <br/>
       <br/>
       <Grid container spacing={2}>
@@ -96,12 +98,13 @@ function AirbnbSearch() {
                 title={listing.name}
                 subheader={listing.city}
               />
-              <CardMedia
-                component="img"
-                height="140" 
-                image={listing.images[0]}
-                alt={listing.name}
-              />
+              <CardMedia 
+  component="img"
+  style={{ height: '200px', width: '100%' ,margin:'auto' }} // Adjust height and width as needed
+  image={listing.images[0]}
+  alt={listing.name}
+/>
+
               <CardContent style={{ height: '100px' }}> {/* Set fixed height for card content */}
                 <Typography variant="body2" color="text.secondary">
                   {listing.description}
