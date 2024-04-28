@@ -23,7 +23,8 @@ function AirbnbSearch() {
   const [listings, setListings] = useState([]);
   const [adults, setadults] = useState('');
   const [children, setchildren] = useState('');
-
+  const [showImage, setShowImage] = useState(true);
+  
   // const handleExpandClick = (id) => {
   //   setListings(prevListings => prevListings.map(listing => {
   //     if (listing.id === id) {
@@ -52,7 +53,10 @@ function AirbnbSearch() {
       const data = await response.json();
       const formattedListings = data.results.map(listing => ({ ...listing, expanded: false }));
       setListings(formattedListings);
-    } catch (error) {
+      setShowImage(false);
+
+    } 
+    catch (error) {
       console.error('Error fetching Airbnb listings:', error);
     }
   };
@@ -77,14 +81,16 @@ function AirbnbSearch() {
   <input className="mt-2 bg-[#ff5a60] w-40 border  border-black border-3  rounded-md px-3 py-2 mr-10 text-gray-700 placeholder-black text-center" placeholder="Children" type="text" value={children} onChange={(e) => setchildren(e.target.value)} />
   <button className="mt-2 bg-[#ff5a60] w-40 border border-black border-3  text-black  py-2 px-4 rounded" type="submit text-center">Search</button>
 </form>
-
+{showImage && (
+        <img src="https://luchanik.files.wordpress.com/2014/09/20140725_110205.jpg?w=768" alt="Description of your image" style={{ width: '1500px', height: '400px', marginTop: '20px', border: '4px solid black' }} />
+      )}
       <br/>
       <br/>
       <Grid container spacing={2}>
         {listings.map(listing => (
           <Grid item xs={6} sm={4} md={3} key={listing.id}>
             <Card style={{ height: '100%' }}> {/* Set card height to 100% */}
-              <CardHeader
+              <CardHeader 
                 avatar={
                   <Avatar sx={{ bgcolor: red[500] }} aria-label="profile">
                     🤚
@@ -121,13 +127,13 @@ function AirbnbSearch() {
                 <IconButton aria-label="share">
                   <ShareIcon />
                 </IconButton>
-                <IconButton
+                {/* <IconButton
                   onClick={() => handleExpandClick(listing.id)}
                   aria-expanded={listing.expanded}
                   aria-label="show more"
                 >
                   <ExpandMoreIcon />
-                </IconButton>
+                </IconButton> */}
               </CardActions>
               <Collapse in={listing.expanded} timeout="auto" unmountOnExit>
                 <CardContent>
