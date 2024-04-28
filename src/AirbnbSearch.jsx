@@ -41,8 +41,8 @@ function AirbnbSearch() {
       const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': '6112e6c475msh958a4061a13853dp1b5feejsnd2188ccd77d6',
-          'X-RapidAPI-Host': 'airbnb13.p.rapidapi.com'
+          'X-RapidAPI-Key': '918f620157msh114346aeb04e72fp1e766bjsnb71ae37e7c98',
+    'X-RapidAPI-Host': 'airbnb13.p.rapidapi.com'
         }
       };
 
@@ -82,7 +82,16 @@ function AirbnbSearch() {
   <button className="mt-2 bg-[#ff5a60] w-40 border border-black border-3  text-black  py-2 px-4 rounded" type="submit text-center">Search</button>
 </form>
 {showImage && (
-        <img src="https://luchanik.files.wordpress.com/2014/09/20140725_110205.jpg?w=768" alt="Description of your image" style={{ width: '1500px', height: '400px', marginTop: '20px', border: '4px solid black' }} />
+        <img src="https://luchanik.files.wordpress.com/2014/09/20140725_110205.jpg?w=768" alt="Description of your image"  style={{ 
+          width: '100vw', 
+          height: '100vh', 
+          objectFit: 'cover',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: -1
+        }}  />
+
       )}
       <br/>
       <br/>
